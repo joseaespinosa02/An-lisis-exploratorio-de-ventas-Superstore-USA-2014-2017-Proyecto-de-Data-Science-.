@@ -10,6 +10,20 @@ detectar ineficiencias y proponer recomendaciones basadas en evidencia.
 - **Filas:** 9,993 | **Columnas:** 20
 - **Período:** Enero 2014 - Diciembre 2017
 - **Archivo:** `data/raw/Sample - Superstore.csv`
+## 2.1 Columnas principales
+
+| Columna | Tipo | Descripción |
+|---|---|---|
+| `Order Date` | fecha | Fecha en que se realizó la orden |
+| `Ship Date` | fecha | Fecha en que se envió la orden |
+| `Category` | texto | Categoría del producto (Furniture, Technology, Office Supplies) |
+| `Sub-Category` | texto | Subcategoría del producto |
+| `Sales` | decimal | Valor de la venta en dólares |
+| `Quantity` | entero | Cantidad de productos vendidos |
+| `Discount` | decimal | Descuento aplicado (0.0 - 0.8) |
+| `Profit` | decimal | Ganancia generada en dólares |
+| `Region` | texto | Región de USA (East, West, Central, South) |
+| `Segment` | texto | Segmento de cliente (Consumer, Corporate, Home Office) |
 
 ## 3. Preguntas de negocio
 1. ¿Qué categoría genera más ventas y ganancia?
@@ -65,3 +79,53 @@ llegando hasta -$6,500 por orden con descuentos del 80%.
 La región Central y la categoría Furniture concentran los descuentos más altos,
 explicando su baja rentabilidad.
 Ver gráfico 4.
+
+## 7. Cómo ejecutar
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/joseaespinosa02/An-lisis-exploratorio-de-ventas-Superstore-USA-2014-2017-Proyecto-de-Data-Science-.
+cd Proyecto_Superstore
+
+# 2. Crear y activar entorno virtual
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+
+# 3. Instalar dependencias
+pip install -r requirements.txt
+
+# 4. Ejecutar pipeline completo
+python main.py
+
+# 5. Abrir el notebook
+jupyter notebook notebooks/eda.ipynb
+```
+
+## 8. Estructura del proyecto
+
+El proyecto está dividido en capas bien diferenciadas:
+
+- **`data/`** → almacena los datos en dos estados: crudos y procesados
+- **`notebooks/`** → contiene el análisis exploratorio completo y narrado
+- **`src/`** → funciones modulares y reutilizables del pipeline
+- **`main.py`** → punto de entrada que ejecuta todo el pipeline de una vez
+
+```
+Proyecto_Superstore/
+├── data/
+│   ├── raw/                  ← CSV original sin modificar
+│   └── processed/            ← CSV limpio listo para análisis
+├── notebooks/
+│   └── eda.ipynb             → análisis completo con narrativa
+├── src/
+│   ├── config.py             → rutas del proyecto
+│   ├── io.py                 → carga de datos
+│   ├── cleaning.py           → limpieza y transformaciones
+│   ├── features.py           → creación de nuevas variables
+│   ├── viz.py                → funciones de visualización
+│   └── utils.py              → validaciones y utilidades
+├── main.py                   → pipeline ejecutable end-to-end
+├── README.md                 → documentación del proyecto
+└── requirements.txt          → dependencias con versiones
+```
